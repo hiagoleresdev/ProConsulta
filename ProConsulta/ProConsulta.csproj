@@ -7,14 +7,33 @@
     <UserSecretsId>aspnet-ProConsulta-7f07a7bc-07b5-4f1f-bb71-56e492b17764</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="Components\Pages\Medicos\Update.razor" />
+  </ItemGroup>
+
 
   <ItemGroup>
+    <PackageReference Include="Extensions.MudBlazor.StaticInput" Version="2.1.5" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.*" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.*" />
-    <PackageReference Include="MudBlazor" Version="7.*" />
-    <PackageReference Include="Extensions.MudBlazor.StaticInput" Version="2.*" />
+    <PackageReference Include="MudBlazor" Version="7.15.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\Pages\Medicos\Update.razor" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\Pages\Medicos\Update.razor" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="Components\Pages\Medicos\Update.razor" />
   </ItemGroup>
 
 </Project>

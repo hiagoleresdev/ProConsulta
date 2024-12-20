@@ -52,7 +52,7 @@ namespace ProConsulta.Components.Pages.Pacientes
                     Current.DataNascimento = DataNascimento;
 
                     await repository.UpdateAsync(Current);
-                    Snackbar.Add($"Paciente {Current} atualizado com sucesso", Severity.Success);
+                    Snackbar.Add($"Paciente {Current.Nome} atualizado com sucesso", Severity.Success);
                     navigationManager.NavigateTo("/pacientes");
                 }
             }catch(Exception ex)

@@ -17,7 +17,7 @@ namespace ProConsulta.Components.Pages.Medicos
         public ISnackbar Snackbar { get; set; }
 
         [Inject]
-        public NavigationManager navigationManager { get; set; }
+        public NavigationManager navigationManager { get; set; } = null!;
         public List<Medico> Medicos { get; set; } = new List<Medico>();
 
         public async Task DeletePaciente(Medico medico)
