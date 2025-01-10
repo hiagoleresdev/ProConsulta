@@ -2,43 +2,41 @@
 using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor;
 using ProConsulta.Models;
-using ProConsulta.Repositores.Pacientes;
+using ProConsulta.Repositories.Agendamentos;
 using ProConsulta.Repositories.Medicos;
 
-namespace ProConsulta.Components.Pages.Medicos
+namespace ProConsulta.Components.Pages.Agendamentos
 {
-    public class IndexMedicoPage: ComponentBase
+    public class IndexAgendamentoPage : ComponentBase
     {
         [Inject]
-        public IMedicoRepository repository { get; set; }
+        public IAgendamentoRepository repository { get; set; } = null!;
         [Inject]
-        public IDialogService Dialog { get; set; }
+        public IDialogService Dialog { get; set; } = null!;
 
         [Inject]
-        public ISnackbar Snackbar { get; set; }
+        public ISnackbar Snackbar { get; set; } = null!;
 
-        [Inject]
-        public NavigationManager navigationManager { get; set; } = null!;
-        public List<Medico> Medicos { get; set; } = new List<Medico>();
+        public List<Agendamento> Agendamentos { get; set; } = new List<Agendamento>();
         public bool HideButtons { get; set; }
         [CascadingParameter]
         private Task<AuthenticationState> Authentication { get; set; }
-        public async Task DeleteMedico(Medico medico)
+        public async Task DeleteAgendamento(Agendamento agendamento)
         {
             try
             {
                 var result = await Dialog.ShowMessageBox
                 (
                   "Atenção",
-                  $"Deseja excluir o médico {medico.Nome}? ",
+                  $"Deseja excluir este agendamento ? ",
                   yesText: "Sim",
                   cancelText: "Não"
                 );
 
                 if (result is true)
                 {
-                    await repository.DeleteByIdAsync(medico.Id);
-                    Snackbar.Add($"Médico {medico.Nome} excluido com sucesso!", Severity.Success);
+                    await repository.DeleteByIdAsync(agendamento.Id);
+                    Snackbar.Add($"Agendamento excluido com sucesso!", Severity.Success);
                     await OnInitializedAsync();
                 }
             }
@@ -48,17 +46,12 @@ namespace ProConsulta.Components.Pages.Medicos
             }
         }
 
-        public void GoToUpdate(int id)
-        {
-            navigationManager.NavigateTo($"/medicos/update/{id}");
-        }
-
         protected override async Task OnInitializedAsync()
         {
             var auth = await Authentication;
-            HideButtons = !auth.User.IsInRole("Atendente"); 
-            Medicos = await repository.GetAllAsync();
-        }
+            Agendamentos = await repository.GetAllAsync();
+            HideButtons = !auth.User.IsInRole("Atendente");
 
+        }
     }
 }

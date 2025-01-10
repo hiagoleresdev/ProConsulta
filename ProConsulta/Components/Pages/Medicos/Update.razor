@@ -1,7 +1,8 @@
-﻿@using MudBlazor
+﻿@using Microsoft.AspNetCore.Authorization
+@using MudBlazor
 @page "/medicos/update/{MedicoId:int}"
 @inherits UpdateMedicoPage
-
+@attribute [Authorize(Roles = "Atendente")]
 <PageTitle>Medicos</PageTitle>
 
 <MudText Typo="Typo.h3">Atualizar Medicos</MudText>

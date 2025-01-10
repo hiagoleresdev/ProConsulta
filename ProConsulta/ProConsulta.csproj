@@ -8,6 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Components\Account\AccessDenied.razor" />
+    <Content Remove="Components\Account\Pages\Manage\LogOut.razor" />
+    <Content Remove="Components\Pages\Agendamentos\Index.razor" />
     <Content Remove="Components\Pages\Medicos\Update.razor" />
   </ItemGroup>
 
@@ -28,12 +31,31 @@
 
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\Account\AccessDenied.razor" />
+    <_ContentIncludedByDefault Remove="Components\Account\Pages\Manage\LogOut.razor" />
+    <_ContentIncludedByDefault Remove="Components\Pages\Agendamentos\Index.razor" />
     <_ContentIncludedByDefault Remove="Components\Pages\Medicos\Update.razor" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <None Include="Components\Account\AccessDenied.razor" />
+    <None Include="Components\Account\Pages\Manage\LogOut.razor" />
+    <None Include="Components\Pages\Agendamentos\Index.razor" />
     <None Include="Components\Pages\Medicos\Update.razor" />
   </ItemGroup>
 
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\Pages\Agendamentos\Index.razor" />
+  </ItemGroup>
+  <PropertyGroup>
+    <BlazorCacheBootResources>false</BlazorCacheBootResources>
+  </PropertyGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\Account\Pages\Manage\LogOut.razor" />
+  </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\Account\AccessDenied.razor" />
+  </ItemGroup>
 </Project>
