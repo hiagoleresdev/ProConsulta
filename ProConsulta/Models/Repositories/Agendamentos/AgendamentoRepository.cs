@@ -39,5 +39,13 @@ namespace ProConsulta.Repositories.Agendamentos
         {
             return await _context.Agendamentos.FirstOrDefaultAsync(t => t.Id == id);
         }
+
+        public async Task<List<AgendamentosAnuais>?> GetReportAsync()
+        {
+            var result = _context.Database.SqlQuery<AgendamentosAnuais>
+                ($"SELECT MONTH(DataConsulta) AS Mes, COUNT(*) AS QuantidadeAgendamentos FROM Agendamentos WHERE YEAR(DataConsulta) = {DateTime.Today.Year} GROUP BY MONTH(DataConsulta) ORDER BY Mes;");
+
+            return await Task.FromResult(result.ToList());
+        }
     }
 }

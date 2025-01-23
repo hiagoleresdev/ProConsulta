@@ -25,8 +25,11 @@
             }
         </MudSelect>
 
-        <MudDatePicker Label="Data do Agendamento" Variant="Variant.Outlined" Editable="false"
-                       @bind-Value="Date" MinDate="@MinDate" Placeholder="Data de Nascimento"></MudDatePicker>
+        <MudDatePicker Variant="Variant.Outlined"
+                       @bind-Date="date"
+                       Label="Data do Agendamento"
+                       MinDate="MinDate"
+                       DateFormat="dd/MM/yyyy" />
         <MudTimePicker Label="Hora do Agendamento" Variant="Variant.Outlined"
                        @bind-Value="time" AmPm="false" ></MudTimePicker>
         

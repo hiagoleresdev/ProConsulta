@@ -27,11 +27,8 @@ namespace ProConsulta.Components.Pages.Pacientes
         {
             try
             {
-                Snackbar.Add("Submissão iniciada!", Severity.Info);
                 if (editContext.Model is PacienteInputModel model)
                 {
-                    Snackbar.Add($"Dados recebidos: Nome: {model.Nome}, Documento: {model.Documento}", Severity.Info);
-
                     var paciente = new Paciente
                     {
                         Nome = model.Nome,
@@ -40,8 +37,6 @@ namespace ProConsulta.Components.Pages.Pacientes
                         Email = model.Email,
                         DataNascimento = model.DataNascimento,
                     };
-
-                    Snackbar.Add("Adicionando paciente no banco...", Severity.Info);
 
                     await repository.AddAsync(paciente);
 

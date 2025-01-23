@@ -1,57 +1,49 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor;
 using ProConsulta.Models;
 using ProConsulta.Repositories.Agendamentos;
-using ProConsulta.Repositories.Medicos;
 
 namespace ProConsulta.Components.Pages.Agendamentos
 {
     public class IndexAgendamentoPage : ComponentBase
     {
         [Inject]
-        public IAgendamentoRepository repository { get; set; } = null!;
-        [Inject]
-        public IDialogService Dialog { get; set; } = null!;
+        private IAgendamentoRepository AgendamentoRepository { get; set; } = null!;
 
         [Inject]
-        public ISnackbar Snackbar { get; set; } = null!;
+        public IDialogService Dialog { get; set; }
 
-        public List<Agendamento> Agendamentos { get; set; } = new List<Agendamento>();
-        public bool HideButtons { get; set; }
-        [CascadingParameter]
-        private Task<AuthenticationState> Authentication { get; set; }
+        [Inject]
+        public ISnackbar Snackbar { get; set; }
+
+        public List<Agendamento> Agendamentos { get; set;} = new List<Agendamento>();
+
         public async Task DeleteAgendamento(Agendamento agendamento)
         {
             try
             {
                 var result = await Dialog.ShowMessageBox
                 (
-                  "Atenção",
-                  $"Deseja excluir este agendamento ? ",
-                  yesText: "Sim",
-                  cancelText: "Não"
+                    "Atenção",
+                    "Deseja excluir esse agendamento?",
+                    yesText: "SIM",
+                    cancelText: "No"
                 );
 
-                if (result is true)
+                if(result is true)
                 {
-                    await repository.DeleteByIdAsync(agendamento.Id);
-                    Snackbar.Add($"Agendamento excluido com sucesso!", Severity.Success);
-                    await OnInitializedAsync();
+                    await AgendamentoRepository.DeleteByIdAsync (agendamento.Id);
+                    Snackbar.Add("Agendamento excluído com sucesso!", Severity.Success);
+                    await OnInitializedAsync(); 
                 }
-            }
-            catch (Exception ex)
+            }catch (Exception ex)
             {
                 Snackbar.Add(ex.Message, Severity.Error);
             }
         }
-
         protected override async Task OnInitializedAsync()
         {
-            var auth = await Authentication;
-            Agendamentos = await repository.GetAllAsync();
-            HideButtons = !auth.User.IsInRole("Atendente");
-
+            Agendamentos = await AgendamentoRepository.GetAllAsync();   
         }
     }
 }
