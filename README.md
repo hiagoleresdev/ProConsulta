@@ -75,6 +75,7 @@ Fique à vontade para contribuir, relatar problemas ou discutir ideias para o pr
 📎 LinkedIn: [Seu LinkedIn](https://linkedin.com/in/seu-usuario)  
 
 ---  
+![image](https://github.com/user-attachments/assets/0e165e84-020d-4679-9191-4878e3b7b5a9)
 
 **Gostou do projeto?** ⭐ Dê um star no repositório para apoiar meu trabalho!  
 
