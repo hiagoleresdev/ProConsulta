@@ -21,8 +21,12 @@
         <MudTextField Label="Celular" Variant="Variant.Outlined"
                       HelperText="Campo obrigatório" @bind-Value="InputModel.Celular" 
                       Mask="@(new PatternMask("(00) 00000-0000"))" For="@(() => InputModel.Celular)" />
-        <MudDatePicker Label="Data de Nascimento" Variant="Variant.Outlined"  Editable="false"
-                      @bind-Value="InputModel.DataNascimento" MaxDate="@MaxDate" Placeholder="Data de Nascimento"></MudDatePicker>
+        <MudDatePicker Label="Data de Nascimento"
+                       Editable="false"
+                       @bind-Date="DataNascimento"
+                       Variant="Variant.Outlined"
+                       MaxDate="@MaxDate"
+                       Placeholder="Data de Nascimento" />
         <MudDivider Class="m-4" />
         <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Save" Color="Color.Info" Size="Size.Large" ButtonType="ButtonType.Submit" >SALVAR</MudButton>
          

@@ -4,6 +4,7 @@ using MudBlazor;
 using ProConsulta.Extentions;
 using ProConsulta.Models;
 using ProConsulta.Repositores.Pacientes;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ProConsulta.Components.Pages.Pacientes
 {
@@ -19,7 +20,7 @@ namespace ProConsulta.Components.Pages.Pacientes
 
         public PacienteInputModel InputModel { get; set; } = new PacienteInputModel();
 
-        public DateTime DataNascimento { get; set; } = DateTime.Today;
+        public DateTime? DataNascimento { get; set; } = DateTime.Today;
 
         public DateTime? MaxDate { get; set; }= DateTime.Today;
 
@@ -35,7 +36,7 @@ namespace ProConsulta.Components.Pages.Pacientes
                         Documento = model.Documento.SomenteCaracteres(),
                         Celular = model.Celular.SomenteCaracteres(),
                         Email = model.Email,
-                        DataNascimento = model.DataNascimento,
+                        DataNascimento = DataNascimento.Value,
                     };
 
                     await repository.AddAsync(paciente);
